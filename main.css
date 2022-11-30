@@ -1,0 +1,20 @@
+.large {
+  font-size: 1.5rem;
+}
+.text-red {
+  color: red;
+}
+.bg-gray {
+  background-color: gray;
+}
+.text-blue {
+  color: blue;
+}
+
+.fade-leave-active, .fade-enter-active {
+  transition: opacity 3s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}

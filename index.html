@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vuepractice</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 動的にクラスをつける -->
+    <p>Hello <span v-bind:class="{large: isLarge}">Vue.js</span></p>
+    <!-- 複数のクラスを動的に切り替える  クラス名にハイフンを使う場合はシングルクウォート -->
+    <p>Hello 
+      <span v-bind:class="{large: isLarge, 'text-red': hasError}">Vue.js</span>
+    </p>
+    <!-- プレーンなクラス属性と共存 -->
+    <p>Hello 
+      <span class="bg-gray text-blue" v-bind:class="{large: isLarge, 'text-red': hasError}">Vue.js</span>
+    </p>
+    <!-- 配列構文によるクラスのデータバインディング -->
+    <p>Hello 
+      <span v-bind:class="[largeClass, dengerClass]">Vue.js</span>
+    </p>
+    <!-- オブジェクト -->
+    <p>Hello 
+      <span v-bind:class="classObject">Vue.js</span>
+    </p>
+    <!-- クラスの条件に三項演算子を使う -->
+    <p>Hello 
+      <span v-bind:class="[isLarge2 ? largeClass2 : '', dengerClass2]">Vue.js</span>
+    </p>
+    <!-- インラインスタイルのデータバインディング -->
+    <p>Hello 
+      <span v-bind:style="{ color, fontSize }">Vue.js</span>
+    </p>
+    <!-- v-if v-else-if v-else -->
+    <p v-if="toggle">yes</p>
+    <p v-else>no</p>
+    <p v-if="color === 'red'">Stop</p>
+    <p v-else-if="color === 'yellow'">Caution</p>
+    <p v-else-if="color === 'blue'">Go</p>
+    <p v-else>Not red/yellow/blue</p>
+    <!-- v-show -->
+    <p v-show="toggle">Hello</p>
+    <!-- インラインメソッドハンドラ -->
+    <p>{{ counter }}</p>
+    <button v-on:click="counter++">ボタン</button>
+    <!-- メソッドイベントハンドラ -->
+    <p>{{ counter }}</p> 
+    <!-- 引数を渡してeventも渡す場合は$event -->
+    <button v-on:click="clickHandler">ボタン２</button>
+    <br>
+    <!-- イベント修飾子 .once -->
+    <button v-on:click.once="isTime">時間</button>
+    <p>{{ message }}</p>
+    <!-- v-onの省力記法 -->
+    <button @click.once="isTime">time</button>
+    <p>{{ message }}</p>
+    <!-- v-model利用時は属性は無視される -->
+    <input type="text" v-model="text1" value="foo">
+    <!-- textareaはデータバインディングされない v-modelを使う-->
+    <textarea v-model="text1"></textarea>
+    <br>
+    <!-- チェックボックス単体はboolean -->
+    <label for="checkbox">{{ checked }}</label>
+    <input type="checkbox" v-model="checked">
+    <br>
+    <!-- チェックボックス複数は配列 -->
+    <label for="red">Red</label>
+    <input type="checkbox" id="red" value="Red" v-model="colors">
+    <label for="green">Green</label>
+    <input type="checkbox" id="green" value="Green" v-model="colors">
+    <label for="blue">Blue</label>
+    <input type="checkbox" id="blue" value="Blue" v-model="colors">
+    <p>{{ colors }}</p>
+    <br>
+    <!-- ラジオボタンは文字列 -->
+    <label for="red">Red</label>
+    <input type="radio" id="red" value="Red" v-model="string">
+    <label for="green">Green</label>
+    <input type="radio" id="green" value="Green" v-model="string">
+    <label for="blue">Blue</label>
+    <input type="radio" id="blue" value="Blue" v-model="string">
+    <p>{{ string }}</p>
+    <br>
+    <!-- セレクトボックス単体は文字列 -->
+    <select v-model="selected">
+      <option disabled>Please select one</option>
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </select>
+    <p>{{ selected }}</p>
+    <!-- 修飾子 .lazy バインドを遅延させる -->
+    <input type="text" v-model.lazy="message">
+      <option></option>
+      <p>{{ message }}</p>
+      <!-- 修飾子 .trim 入力値の前後スペースを -->
+      <input type="text" v-model.trim="message">
+      <input type="text" v-model="message">
+      <pre>{{ $data }}</pre>
+      <!-- 修飾子 .number 数値に型変換してから出力する -->
+      <input type="number" v-model="age">
+      {{ age + 10 }}
+
+      <!-- コンポーネントの定義 グローバル -->
+      <hello-component></hello-component>
+      <hello-component></hello-component>
+      <hello-component></hello-component>
+      <!-- ローカル -->
+      <hello-vue></hello-vue>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <!-- トランジション -->
+      <button v-on:click="show = !show">Change!</button>
+      <transition name="fade">
+        <p v-show="show">Hello Transition</p>
+      </transition>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="vue.js"></script>
+</body>
+</html>`
